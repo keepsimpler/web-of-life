@@ -65,7 +65,7 @@ getParameters <- function(m, Theta, Sigma) {
 #'         first dimension: simnum, number of simulations
 #'         second dimension: steps + 1, the simulated steps of one simulation
 #'         third dimension: m, the number of variables
-sim.mou <- function(m, Theta, Sigma, Xinit, simnum = 100, steps = 50000, stepwise = 0.01) {
+sim.mou <- function(m, Theta, Sigma, Xinit, simnum = 100, steps = 10000, stepwise = 0.01) {
   grid = setSampling(Terminal = steps * stepwise, n = steps)
   drift = getDrift(m)
   diffusion = getDiffusion(m)
@@ -80,7 +80,7 @@ sim.mou <- function(m, Theta, Sigma, Xinit, simnum = 100, steps = 50000, stepwis
   Xs
 }
 
-sim.mou.lv2 <- function(lv2.out, sigma0 = 0.1, simnum = 100, steps = 50000, stepwise = 0.01, withNstar = TRUE) {
+sim.mou.lv2 <- function(lv2.out, sigma0 = 0.1, simnum = 100, steps = 10000, stepwise = 0.01, withNstar = TRUE) {
   A = laply(lv2.out, function(one) {
     Nstar = one$Nstar
     m = length(Nstar)

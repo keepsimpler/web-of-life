@@ -148,7 +148,8 @@ sim.lv1.2 <- function(graphs, alpha0 = 1, beta0 = 0.1, gamma0 = 1) {
 #'        that allow a feasible steady state exists, for the soft mean field case
 #' @param graph, the incidence matrix of mutualistic networks
 #' @param beta0, the intraspecies competition strength
-get.gamma0.max <- function(graph, beta0 = 1) {
+#' @param sigma0, the SD of white noise
+get.gamma0.max <- function(graph, beta0 = 1, sigma0 = 0.01) {
   edges = sum(graph > 0)
   numP = dim(graph)[1]
   numA = dim(graph)[2]
@@ -159,7 +160,7 @@ get.gamma0.max <- function(graph, beta0 = 1) {
     gamma0 = gamma0 + 0.0001
     A[A > 0] = gamma0
     Theta = D - A  # competition interaction matrix
-    if (min(eigen(Theta)$values) <= 0.001) {
+    if (min(eigen(Theta)$values) <= min( sigma0, 0.01) ) {
       gamma0 = gamma0 - 0.0001
       break
     }
