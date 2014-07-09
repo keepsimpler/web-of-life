@@ -4,7 +4,7 @@ library(yuima)
 library(plyr)
 
 library(doMC)  # 
-registerDoMC(24)  # register Multi Cores
+registerDoMC(20)  # register Multi Cores
 getDoParWorkers()  # get available Cores
 
 ## Multivariate OU (Ornstein - Uhlenbeck) process, parameters as matrix
